@@ -1,0 +1,17 @@
+---
+- name: "install postfix"
+  yum:  name=postfix state=present
+
+# なんか動かん、けどまぁ他のmta消せば自動的にpostfixが昇格するからいいか
+#- name: "set mta to postfix"
+#  alternatives: name=mta path=/usr/sbin/sendmail.postfix
+
+- name: "uninstall other mta"
+  yum:  name={{ item }} state=absent
+  with_items:
+    - sendmail
+    - exim
+
+- name: "start postfix"
+  service: name=postfix state=started enabled=yes
+

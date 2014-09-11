@@ -1,0 +1,17 @@
+---
+- name: install common packages
+  yum: name={{ item }}
+  with_items:
+    - git
+    - telnet
+    - ftp
+    - mlocate
+    - jwhois
+    - mysql
+    - memcached
+
+- name: install common packages from epel
+  yum: name={{ item }} enablerepo=epel
+  with_items:
+    - bash-completion
+    - redis

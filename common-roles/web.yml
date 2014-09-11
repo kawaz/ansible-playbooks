@@ -1,0 +1,6 @@
+- hosts: all
+  sudo: yes
+  vars:
+  roles:
+    - base
+    - php55
