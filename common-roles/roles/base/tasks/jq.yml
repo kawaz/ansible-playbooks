@@ -1,0 +1,3 @@
+---
+- name: install jq
+  get_url: url=http://stedolan.github.io/jq/download/linux64/jq dest=/usr/bin/jq mode=0755

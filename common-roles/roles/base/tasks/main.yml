@@ -12,3 +12,4 @@
   lineinfile: dest=/etc/sysconfig/i18n regexp=^LANG= line=LANG={{ base_locale }}
 
 - include: common-packages.yml
+- include: jq.yml
