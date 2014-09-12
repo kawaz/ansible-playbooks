@@ -1,0 +1,21 @@
+---
+- name: Set localtime
+  file: >
+    src=/usr/share/zoneinfo/{{ timezone }}
+    dest=/etc/localtime
+    state=link force=true
+
+- name: Configure /etc/sysconfig/clock
+  lineinfile: >
+    dest=/etc/sysconfig/clock
+    regexp="^{{ item.key }}="
+    line="{{ item.key }}={{ item.value }}"
+  with_items:
+    - { key: 'ZONE', value: "{{ timezone }}" }
+    - { key: 'UTC', value: 'False' }
+
+- name: Configure /etc/sysconfig/i18n
+  lineinfile: >
+    dest=/etc/sysconfig/i18n
+    regexp=^LANG=
+    line=LANG={{ locale }}
