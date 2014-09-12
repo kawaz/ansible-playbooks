@@ -14,7 +14,4 @@
     - php55-pecl-apc
     - php55-pecl-imagick
     - php55-pecl-memcached
-
-- name: "start http"
-  service: name=httpd state=started enabled=yes
-
+  notify: restart httpd
